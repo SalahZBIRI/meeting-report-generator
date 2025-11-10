@@ -48,17 +48,35 @@ Language: {language}
 Partial summaries:
 {parts}
 
-Merge them into a final coherent professional report.
+Create ONE final coherent report with this EXACT structure:
+
+1. MEETING OVERVIEW
+Brief context (2-3 sentences max)
+
+2. KEY DISCUSSION POINTS
+Main topics discussed with speaker mentions
+
+3. DECISIONS MADE
+List all decisions taken (who proposed, what was decided)
+Format: "Decision: [description] - Proposed by SPEAKER_XX"
+
+4. ACTION ITEMS  
+All actions to be taken
+Format: "Action: [task] - Assigned to: [person/SPEAKER_XX] - Deadline: [if mentioned]"
+
+5. NEXT STEPS
+Brief conclusion on follow-up
 
 CRITICAL INSTRUCTIONS:
-1. Preserve speaker mentions ([SPEAKER_00], [SPEAKER_01], etc.)
-2. ELIMINATE ALL REDUNDANCIES - never repeat the same information
-3. Merge similar points into one sentence
+1. Preserve ALL speaker mentions ([SPEAKER_00], [SPEAKER_01],...)
+2. ELIMINATE redundancies - never repeat the same information
+3. Merge similar points into single clear statements
 4. Be concise but comprehensive
 5. Professional business tone
-6. NO emojis, NO bold text (), NO special characters
-7. Use clean section headers with numbers only
-8. Respond in {language}"""
+6. NO emojis, NO markdown formatting, NO special characters
+7. Each section must have clear numbered headers
+8. Prioritize DECISIONS and ACTIONS - these are the most important
+9. Respond in {language}"""
 
 
 #Function to call the Groq model
