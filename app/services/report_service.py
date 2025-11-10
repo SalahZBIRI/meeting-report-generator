@@ -4,7 +4,7 @@ from textwrap import wrap
 import subprocess
 from app.services.whisper_service import transcribe_and_diarize
 from app.services.summarizer_service import CHUNK_PROMPT, MERGE_PROMPT, llama_summarize
-from app.services.pdf_service import generate_pdf
+from app.services.pdf_service import generate_pdf, generate_transcription_pdf
 
 #Function to ensure the audio file is in WAV format(best format for whisper)
 def ensure_wav(audio_path: str) -> str:
@@ -102,7 +102,17 @@ def generate_report(audio_path: str):
 
     # Step 6: Generate the final PDF report
     try:
+        transcription_pdf_path = generate_transcription_pdf(
+            transcription_text, 
+            participants, 
+            pdf_path="transcription_report.pdf"
+        )
+    except Exception as e:
+        print(f"Error generating transcription PDF: {e}", flush=True)
+
+    try:
         pdf_path = generate_pdf(final_summary, participants)
+        
     except Exception as e:
         print(f" Error generating PDF: {e}", flush=True)
         pdf_path = None

@@ -34,3 +34,41 @@ def generate_pdf(summary: str, participants: list, pdf_path="report_output.pdf")
     doc.build(elements)
     print("Report generated :", pdf_path, flush=True)
     return pdf_path
+
+
+
+def generate_transcription_pdf(transcription: str, participants: list, pdf_path="transcription_output.pdf"):
+    """Generate a clean PDF containing only the full transcription with speakers"""
+    print("Generating transcription PDF...", flush=True)
+    
+    from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
+    from reportlab.lib.styles import getSampleStyleSheet
+    
+    doc = SimpleDocTemplate(pdf_path)
+    styles = getSampleStyleSheet()
+    
+    # Styles
+    title_style = styles["Title"]
+    title_style.fontSize = 18
+    title_style.spaceAfter = 20
+    
+    heading_style = styles["Heading2"]
+    heading_style.fontSize = 14
+    heading_style.spaceAfter = 12
+    
+    # Clean transcription text for PDF
+    clean_text = transcription.replace("\n", "<br/>")
+    
+    elements = [
+        Paragraph("MEETING TRANSCRIPTION", title_style),
+        Spacer(1, 12),
+        Paragraph(f"<b>Participants:</b> {', '.join(participants)}", styles["Normal"]),
+        Spacer(1, 30),
+        Paragraph("FULL TRANSCRIPT", heading_style),
+        Spacer(1, 10),
+        Paragraph(clean_text, styles["BodyText"]),
+    ]
+    
+    doc.build(elements)
+    print(f"Transcription PDF generated: {pdf_path}", flush=True)
+    return pdf_path
