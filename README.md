@@ -1,6 +1,6 @@
 # Meeting Report Generator
 
-> Developed by **Salah Eddine ZBIRI** — based on the FastAPI + Docker template provided by **Rakam AI**.  
+> Developed by **Salah Eddine ZBIRI** — based on the FastAPI + Docker template.  
 > Implements the **"Report Generator"** project with a full AI-powered meeting transcription and summarization pipeline.
 
 ---
